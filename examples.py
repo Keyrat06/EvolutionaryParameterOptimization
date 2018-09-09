@@ -1,7 +1,8 @@
-import evolutionary_parameter_optimization
-import time
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import time
+
+from evolutionary_optimization.evolutionary_parameter_optimization import EvolutionaryParameterOptimizer
 
 
 def test_one_minimization():
@@ -10,7 +11,7 @@ def test_one_minimization():
     parameter_ranges = [(-20, 20), (-20, 20)]
     parameter_discretization = [0.1, 0.1]
     time_start = time.time()
-    optimizer = evolutionary_parameter_optimization.EvolutionaryParameterOptimizer(
+    optimizer = EvolutionaryParameterOptimizer(
         parameter_ranges=parameter_ranges,
         parameter_discretization=parameter_discretization,
         fitness_function=scoring_function,
@@ -44,12 +45,12 @@ def test_one_regression():
     parameter_ranges = [(-20, 20), (-20, 20)]
     parameter_discretization = [0.1, 0.1]
     time_start = time.time()
-    optimizer = evolutionary_parameter_optimization.EvolutionaryParameterOptimizer(
+    optimizer = EvolutionaryParameterOptimizer(
         parameter_ranges=parameter_ranges,
         parameter_discretization=parameter_discretization,
         fitness_function=scoring_function,
-        population_size=10,
-        generations=15,
+        population_size=20,
+        generations=20,
         replacement_proportion=0.5,
         minimize=True,
         show_evolution=True)
@@ -71,4 +72,5 @@ def test_one_regression():
 
 if __name__ == '__main__':
     test_one_minimization()
+    time.sleep(0.5)
     test_one_regression()
