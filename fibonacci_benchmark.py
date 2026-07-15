@@ -121,6 +121,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     recursive_best = min(recursive_timings)
     iterative_best = min(iterative_timings)
     speedup = recursive_best / iterative_best
+    median_speedup = statistics.median(recursive_timings) / statistics.median(
+        iterative_timings
+    )
 
     result = {
         "implementation": platform.python_implementation(),
@@ -139,6 +142,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "median_seconds": statistics.median(iterative_timings),
         },
         "iterative_speedup": speedup,
+        "iterative_median_speedup": median_speedup,
     }
 
     if args.json:

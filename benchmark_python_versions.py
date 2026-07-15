@@ -120,7 +120,8 @@ def write_csv(path: Path, results: list[dict[str, Any]]) -> None:
         "recursive_median_seconds",
         "iterative_best_seconds",
         "iterative_median_seconds",
-        "iterative_speedup",
+        "iterative_best_speedup",
+        "iterative_median_speedup",
     ]
     with path.open("w", newline="", encoding="utf-8") as output:
         writer = csv.DictWriter(output, fieldnames=fields)
@@ -137,7 +138,10 @@ def write_csv(path: Path, results: list[dict[str, Any]]) -> None:
                     "recursive_median_seconds": result["recursive"]["median_seconds"],
                     "iterative_best_seconds": result["iterative"]["best_seconds"],
                     "iterative_median_seconds": result["iterative"]["median_seconds"],
-                    "iterative_speedup": result["iterative_speedup"],
+                    "iterative_best_speedup": result["iterative_speedup"],
+                    "iterative_median_speedup": result[
+                        "iterative_median_speedup"
+                    ],
                 }
             )
 
@@ -201,7 +205,7 @@ def write_svg(path: Path, results: list[dict[str, Any]]) -> None:
                 f"<title>{escape(label)}</title></rect>"
             )
         version = escape(result["python_version"])
-        speedup = result["iterative_speedup"]
+        speedup = result["iterative_median_speedup"]
         lines.extend(
             [
                 f'<text x="{center:.2f}" y="{baseline + 24}" text-anchor="middle" '
