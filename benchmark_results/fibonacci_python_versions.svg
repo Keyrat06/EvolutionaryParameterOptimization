@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+<rect width="100%" height="100%" fill="white"/>
+<text x="480" y="30" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="bold">Fibonacci speed across CPython versions</text>
+<text x="480" y="51" text-anchor="middle" font-family="sans-serif" font-size="13">F(30), median seconds per call (log scale)</text>
+<line x1="100" y1="460.00" x2="925" y2="460.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="464.00" text-anchor="end" font-family="sans-serif" font-size="12">1e-7 s</text>
+<line x1="100" y1="403.57" x2="925" y2="403.57" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="407.57" text-anchor="end" font-family="sans-serif" font-size="12">1e-6 s</text>
+<line x1="100" y1="347.14" x2="925" y2="347.14" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="351.14" text-anchor="end" font-family="sans-serif" font-size="12">1e-5 s</text>
+<line x1="100" y1="290.71" x2="925" y2="290.71" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="294.71" text-anchor="end" font-family="sans-serif" font-size="12">1e-4 s</text>
+<line x1="100" y1="234.29" x2="925" y2="234.29" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="238.29" text-anchor="end" font-family="sans-serif" font-size="12">1e-3 s</text>
+<line x1="100" y1="177.86" x2="925" y2="177.86" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="181.86" text-anchor="end" font-family="sans-serif" font-size="12">1e-2 s</text>
+<line x1="100" y1="121.43" x2="925" y2="121.43" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="125.43" text-anchor="end" font-family="sans-serif" font-size="12">1e-1 s</text>
+<line x1="100" y1="65.00" x2="925" y2="65.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="90" y="69.00" text-anchor="end" font-family="sans-serif" font-size="12">1e0 s</text>
+<rect x="133.00" y="111.84" width="49.50" height="348.16" fill="#4c78a8"><title>Recursive: 1.479e-01 seconds</title></rect>
+<rect x="182.50" y="408.00" width="49.50" height="52.00" fill="#f58518"><title>Iterative: 8.348e-07 seconds</title></rect>
+<text x="182.50" y="484" text-anchor="middle" font-family="sans-serif" font-size="13">Python 3.10.20</text>
+<text x="182.50" y="504" text-anchor="middle" font-family="sans-serif" font-size="11">177,154x speedup</text>
+<rect x="298.00" y="124.20" width="49.50" height="335.80" fill="#4c78a8"><title>Recursive: 8.931e-02 seconds</title></rect>
+<rect x="347.50" y="418.02" width="49.50" height="41.98" fill="#f58518"><title>Iterative: 5.546e-07 seconds</title></rect>
+<text x="347.50" y="484" text-anchor="middle" font-family="sans-serif" font-size="13">Python 3.11.15</text>
+<text x="347.50" y="504" text-anchor="middle" font-family="sans-serif" font-size="11">161,036x speedup</text>
+<rect x="463.00" y="128.75" width="49.50" height="331.25" fill="#4c78a8"><title>Recursive: 7.417e-02 seconds</title></rect>
+<rect x="512.50" y="424.26" width="49.50" height="35.74" fill="#f58518"><title>Iterative: 4.298e-07 seconds</title></rect>
+<text x="512.50" y="484" text-anchor="middle" font-family="sans-serif" font-size="13">Python 3.12.13</text>
+<text x="512.50" y="504" text-anchor="middle" font-family="sans-serif" font-size="11">172,553x speedup</text>
+<rect x="628.00" y="122.33" width="49.50" height="337.67" fill="#4c78a8"><title>Recursive: 9.640e-02 seconds</title></rect>
+<rect x="677.50" y="423.08" width="49.50" height="36.92" fill="#f58518"><title>Iterative: 4.511e-07 seconds</title></rect>
+<text x="677.50" y="484" text-anchor="middle" font-family="sans-serif" font-size="13">Python 3.13.14</text>
+<text x="677.50" y="504" text-anchor="middle" font-family="sans-serif" font-size="11">213,703x speedup</text>
+<rect x="793.00" y="131.19" width="49.50" height="328.81" fill="#4c78a8"><title>Recursive: 6.715e-02 seconds</title></rect>
+<rect x="842.50" y="424.08" width="49.50" height="35.92" fill="#f58518"><title>Iterative: 4.331e-07 seconds</title></rect>
+<text x="842.50" y="484" text-anchor="middle" font-family="sans-serif" font-size="13">Python 3.14.6</text>
+<text x="842.50" y="504" text-anchor="middle" font-family="sans-serif" font-size="11">155,048x speedup</text>
+<rect x="350" y="523" width="16" height="16" fill="#4c78a8"/>
+<text x="373" y="536" font-family="sans-serif" font-size="13">Recursive</text>
+<rect x="485" y="523" width="16" height="16" fill="#f58518"/>
+<text x="508" y="536" font-family="sans-serif" font-size="13">Iterative</text>
+</svg>
