@@ -183,9 +183,15 @@ def write_png(path: Path, results: list[dict[str, Any]]) -> None:
         axis.grid(True, which="both", alpha=0.3)
 
     handles, labels = axes[0].get_legend_handles_labels()
-    figure.legend(handles, labels, loc="upper center", ncol=len(versions))
+    figure.legend(
+        handles,
+        labels,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.94),
+        ncol=len(versions),
+    )
     figure.suptitle("Fibonacci performance across CPython versions", y=0.99)
-    figure.tight_layout(rect=(0, 0, 1, 0.9))
+    figure.tight_layout(rect=(0, 0, 1, 0.84))
     figure.savefig(path, dpi=180, bbox_inches="tight")
     plt.close(figure)
 
