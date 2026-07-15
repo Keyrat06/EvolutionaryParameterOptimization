@@ -105,7 +105,7 @@ def run_benchmark(executable: str, args: argparse.Namespace) -> dict[str, Any]:
         command, check=True, capture_output=True, text=True
     )
     result = json.loads(completed.stdout)
-    result["executable"] = executable
+    result["executable"] = Path(executable).name
     return result
 
 
