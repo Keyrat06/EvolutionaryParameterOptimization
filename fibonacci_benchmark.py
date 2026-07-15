@@ -2,6 +2,7 @@
 """Compare recursive and iterative Fibonacci implementations."""
 
 import argparse
+import json
 import platform
 import statistics
 import timeit
@@ -71,9 +72,25 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--number",
+        type=positive_integer,
+        help="function calls per sample for both styles (overrides style defaults)",
+    )
+    parser.add_argument(
+        "--recursive-number",
         default=1,
         type=positive_integer,
-        help="function calls per timing sample (default: 1)",
+        help="recursive calls per timing sample (default: 1)",
+    )
+    parser.add_argument(
+        "--iterative-number",
+        default=10000,
+        type=positive_integer,
+        help="iterative calls per timing sample (default: 10000)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="write machine-readable benchmark results",
     )
     return parser.parse_args(argv)
 
@@ -86,6 +103,8 @@ def format_timings(name: str, timings: list[float]) -> str:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
+    recursive_number = args.number or args.recursive_number
+    iterative_number = args.number or args.iterative_number
 
     recursive_result = fibonacci_recursive(args.n)
     iterative_result = fibonacci_iterative(args.n)
@@ -93,19 +112,45 @@ def main(argv: Sequence[str] | None = None) -> int:
         raise RuntimeError("Fibonacci implementations returned different results")
 
     recursive_timings = benchmark(
-        fibonacci_recursive, args.n, args.repeat, args.number
+        fibonacci_recursive, args.n, args.repeat, recursive_number
     )
     iterative_timings = benchmark(
-        fibonacci_iterative, args.n, args.repeat, args.number
+        fibonacci_iterative, args.n, args.repeat, iterative_number
     )
 
     recursive_best = min(recursive_timings)
     iterative_best = min(iterative_timings)
     speedup = recursive_best / iterative_best
 
+    result = {
+        "implementation": platform.python_implementation(),
+        "python_version": platform.python_version(),
+        "n": args.n,
+        "value": recursive_result,
+        "repeat": args.repeat,
+        "recursive": {
+            "number": recursive_number,
+            "best_seconds": recursive_best,
+            "median_seconds": statistics.median(recursive_timings),
+        },
+        "iterative": {
+            "number": iterative_number,
+            "best_seconds": iterative_best,
+            "median_seconds": statistics.median(iterative_timings),
+        },
+        "iterative_speedup": speedup,
+    }
+
+    if args.json:
+        print(json.dumps(result))
+        return 0
+
     print(f"Python:    {platform.python_version()} ({platform.python_implementation()})")
     print(f"F({args.n}):      {recursive_result}")
-    print(f"Samples:   {args.repeat} x {args.number} call(s)")
+    print(
+        f"Samples:   {args.repeat} x {recursive_number} recursive call(s), "
+        f"{args.repeat} x {iterative_number} iterative call(s)"
+    )
     print(format_timings("Recursive", recursive_timings))
     print(format_timings("Iterative", iterative_timings))
     print(f"Speedup:   iterative is {speedup:,.2f}x faster (best times)")
